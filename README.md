@@ -2,6 +2,8 @@
 
 Reproduce a typing issue with `@graphql-codegen/typescript-vue-urql`
 
+Original issue: https://github.com/dotansimha/graphql-code-generator/issues/9421
+
 ### How to test
 
 ```sh
