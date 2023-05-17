@@ -1,0 +1,28 @@
+fragment postFragment on Post {
+  id
+  name
+}
+
+query posts {
+  posts {
+    ...postFragment
+  }
+}
+
+query lastPosts($last: Int!) {
+  posts(take: $last) {
+    ...postFragment
+  }
+}
+
+mutation updatePost($input: PostDataInput!) {
+    mutatePost(data: $input) {
+        ...postFragment
+    }
+}
+
+mutation updatePostType($id: ID!, $type: PostType) {
+    mutatePost(data: { id: $id, type: $type }) {
+        ...postFragment
+    }
+}

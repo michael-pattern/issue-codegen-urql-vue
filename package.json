@@ -1,0 +1,33 @@
+{
+  "name": "bug-codegen-typescript-vue-urql",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "vite build",
+    "generate": "graphql-codegen --config codegen.yml",
+    "test": "tsc --noEmit"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "graphql": "^16.6.0",
+    "typescript": "^5.0.4"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^3.3.1",
+    "@graphql-codegen/typescript": "^3.0.4",
+    "@graphql-codegen/typescript-generic-sdk": "^3.1.0",
+    "@graphql-codegen/typescript-operations": "^3.0.4",
+    "@graphql-codegen/typescript-resolvers": "^3.2.1",
+    "@graphql-codegen/typescript-vue-urql": "^2.3.6",
+    "@graphql-codegen/urql-introspection": "^2.2.1",
+    "@types/node": "^18.0.0",
+    "@urql/vue": "^1.1.1",
+    "graphql-tag": "^2.12.6",
+    "vite": "^4.3.7"
+  },
+  "engines": {
+    "node": ">= 18.0.0"
+  }
+}

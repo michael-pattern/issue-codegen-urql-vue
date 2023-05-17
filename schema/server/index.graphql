@@ -1,0 +1,28 @@
+scalar DateTime
+
+enum PostType {
+  DRAFT
+  PRIVATE
+  SCHEDULED
+  PUBLISHED
+}
+
+type Post {
+  id: ID!
+  name: String!
+  type: PostType!
+}
+
+input PostDataInput {
+  id: ID
+  name: String
+  type: PostType
+}
+
+type Query {
+    posts(skip: Int = 0, take: Int = 20): [Post!]!
+}
+
+type Mutation {
+    mutatePost(data: PostDataInput!): [Post!]!
+}
