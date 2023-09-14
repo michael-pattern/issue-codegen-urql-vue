@@ -56,6 +56,16 @@ export type QueryPostsArgs = {
   take?: InputMaybe<Scalars['Int']>;
 };
 
+export type Subscription = {
+  __typename?: 'Subscription';
+  singlePostSubscription: Post;
+};
+
+
+export type SubscriptionSinglePostSubscriptionArgs = {
+  id: Scalars['ID'];
+};
+
 export type PostFragment = { __typename?: 'Post', id: string, name: string };
 
 export type PostsVariables = Exact<{ [key: string]: never; }>;
@@ -69,6 +79,13 @@ export type LastPostsVariables = Exact<{
 
 
 export type LastPosts = { __typename?: 'Query', posts: Array<{ __typename?: 'Post', id: string, name: string }> };
+
+export type PostLiveUpdatesVariables = Exact<{
+  id: Scalars['ID'];
+}>;
+
+
+export type PostLiveUpdates = { __typename?: 'Subscription', singlePostSubscription: { __typename?: 'Post', id: string, name: string } };
 
 export type UpdatePostVariables = Exact<{
   input: PostDataInput;
@@ -99,8 +116,8 @@ export const PostsDocument = /*#__PURE__*/ `
 }
     ${PostFragment}`;
 
-export function usePosts(options: Omit<Urql.UseQueryArgs<never, PostsVariables>, 'query'> = {}) {
-  return Urql.useQuery<Posts>({ query: PostsDocument, ...options });
+export function usePosts(options: Omit<Urql.UseQueryArgs<never, PostsVariables>, 'query'>) {
+  return Urql.useQuery<Posts, PostsVariables>({ query: PostsDocument, ...options });
 };
 export const LastPostsDocument = /*#__PURE__*/ `
     query lastPosts($last: Int!) {
@@ -110,8 +127,19 @@ export const LastPostsDocument = /*#__PURE__*/ `
 }
     ${PostFragment}`;
 
-export function useLastPosts(options: Omit<Urql.UseQueryArgs<never, LastPostsVariables>, 'query'> = {}) {
-  return Urql.useQuery<LastPosts>({ query: LastPostsDocument, ...options });
+export function useLastPosts(options: Omit<Urql.UseQueryArgs<never, LastPostsVariables>, 'query'>) {
+  return Urql.useQuery<LastPosts, LastPostsVariables>({ query: LastPostsDocument, ...options });
+};
+export const PostLiveUpdatesDocument = /*#__PURE__*/ `
+    subscription postLiveUpdates($id: ID!) {
+  singlePostSubscription(id: $id) {
+    ...postFragment
+  }
+}
+    ${PostFragment}`;
+
+export function usePostLiveUpdates<R = PostLiveUpdates>(options: Omit<Urql.UseSubscriptionArgs<never, PostLiveUpdatesVariables>, 'query'> = {}, handler?: Urql.SubscriptionHandlerArg<PostLiveUpdates, R>) {
+  return Urql.useSubscription<PostLiveUpdates, R, PostLiveUpdatesVariables>({ query: PostLiveUpdatesDocument, ...options }, handler);
 };
 export const UpdatePostDocument = /*#__PURE__*/ `
     mutation updatePost($input: PostDataInput!) {

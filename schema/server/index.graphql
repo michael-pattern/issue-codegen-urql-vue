@@ -26,3 +26,7 @@ type Query {
 type Mutation {
     mutatePost(data: PostDataInput!): [Post!]!
 }
+
+type Subscription {
+  singlePostSubscription(id: ID!): Post!
+}
