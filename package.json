@@ -20,7 +20,7 @@
     "@graphql-codegen/typescript-generic-sdk": "^3.1.0",
     "@graphql-codegen/typescript-operations": "^3.0.4",
     "@graphql-codegen/typescript-resolvers": "^3.2.1",
-    "@graphql-codegen/typescript-vue-urql": "3.0.0-alpha-20230911210300-bd6b199b9",
+    "@graphql-codegen/typescript-vue-urql": "3.0.0",
     "@graphql-codegen/urql-introspection": "^2.2.1",
     "@types/node": "^18.0.0",
     "@urql/core": "^4.0.8",
